@@ -6,7 +6,7 @@ and calling relevant functions from other modules based on user input.
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
-
+from process import load_csv
 from tui import menu_choice, view_data, visualize_data
 
 def main():
@@ -21,6 +21,10 @@ def main():
     print("-" * len(title))
     print(title)
     print("-" * len(title))
+
+    file_path = r'C:\Users\Joao Victor\Downloads\project_template\disneyland_reviews.csv'
+    data = load_csv(file_path)
+
 
     while True:
         # Display the main menu and get user input
