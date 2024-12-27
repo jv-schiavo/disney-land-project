@@ -7,6 +7,7 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
 
+from tui import menu_choice, view_data, visualize_data
 
 def main():
     """
@@ -21,3 +22,50 @@ def main():
     print(title)
     print("-" * len(title))
 
+    while True:
+        # Display the main menu and get user input
+        choice = menu_choice() # Call function from tui.py to display the menu
+        if choice == 'X':
+            print("\nYou have chosen option X - Exit")
+            print("Exiting program. Goodbye!")
+            break # Exit the program
+
+        elif choice == 'A':
+            print("\nYou have chosen option A - View Data")
+            while True:
+                # Display the sub-menu after option A
+                sub_choice_a = view_data()
+                if sub_choice_a == 'X':
+                    break
+                elif sub_choice_a == 'A':
+                    print("\nYou have chosen option A - View Reviews by Park")
+                elif sub_choice_a == 'B':
+                    print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
+                elif sub_choice_a == 'C':
+                    print("You have chosen option C - Average Score per year by Park")
+                elif sub_choice_a == 'D':
+                    print("You have chosen option D - Average Score by Park and Reviewer Location")
+                else:
+                    print("Invalid choice. Please try again.")
+
+        elif choice == 'B':
+            print("\nYou have chosen option B - Visualize Data")
+            while True:
+                # Display the sub-menu after option B
+                sub_choice_b = visualize_data()
+                if sub_choice_b == 'X':
+                    print("Returning to Main Menu...\n")
+                    break
+                elif sub_choice_b == 'A':
+                    print("\nYou have chosen option A - Most Reviewed by Parks")
+                elif sub_choice_b == 'B':
+                    print("\nYou have chosen option B - Average Scores")
+                elif sub_choice_b == 'C':
+                    print("You have chosen option C - Park Ranking by Nationality")
+                elif sub_choice_b == 'D':
+                    print("You have chosen option D - Most Popular Month by Park")
+                else:
+                    print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
