@@ -5,6 +5,7 @@ It handles all user interactions, including displaying menus and getting user in
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2014
 """
+from fontTools.feaLib.variableScalar import Location
 
 
 def menu_choice():
@@ -46,5 +47,5 @@ def reviews_park(data):
 
     print(f"\nReviews for {park_name}:")
     for review in filtered_reviews:
-        print(f"Reviews ID: {review['Review ID']}, Rating: {review['Rating']},"
+        print(f"Reviews ID: {review['Review_ID']}, Rating: {review['Rating']},"
               f"Date: {review['Year_Month']}, Location: {review['Reviewer_Location']}")
