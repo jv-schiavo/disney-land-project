@@ -7,7 +7,7 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
 from process import load_csv
-from tui import menu_choice, view_data, visualize_data
+from tui import menu_choice, view_data, visualize_data, reviews_park
 
 def main():
     """
@@ -43,6 +43,8 @@ def main():
                     break
                 elif sub_choice_a == 'A':
                     print("\nYou have chosen option A - View Reviews by Park")
+                    # Pass the loaded dataset
+                    reviews_park(data)
                 elif sub_choice_a == 'B':
                     print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
                 elif sub_choice_a == 'C':
