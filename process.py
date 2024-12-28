@@ -12,7 +12,8 @@ def load_csv(file_path):
     data = []
     try:
         with open ('C:\\Users\\Joao Victor\\Downloads\\project_template\\data\\disneyland_reviews.csv', mode='r') as file:
-            reader = csv.reader(file)
+            # Read CSV as dictionaries
+            reader = csv.DictReader(file)
             for row in reader:
                 data.append(row)
         print(f"\nSuccessfully loaded {len(data)} rows")
