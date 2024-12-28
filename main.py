@@ -70,6 +70,7 @@ def main():
                     print("You have chosen option D - Most Popular Month by Park")
                 else:
                     print("Invalid choice. Please try again.")
-
+        else:
+            print("Invalid choice. Please try again.")
 if __name__ == "__main__":
     main()
