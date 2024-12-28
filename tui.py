@@ -5,8 +5,6 @@ It handles all user interactions, including displaying menus and getting user in
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2014
 """
-from fontTools.feaLib.variableScalar import Location
-
 
 def menu_choice():
     # Display the main menu and accepts user input
