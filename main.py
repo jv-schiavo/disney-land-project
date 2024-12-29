@@ -7,7 +7,8 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
 from process import load_csv
-from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location
+from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating
+
 
 def main():
     """
@@ -53,6 +54,8 @@ def main():
 
                 elif sub_choice_a == 'C':
                     print("You have chosen option C - Average Score per year by Park")
+                    # Pass the loaded dataset
+                    avg_rating(data)
                 elif sub_choice_a == 'D':
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
                 else:
