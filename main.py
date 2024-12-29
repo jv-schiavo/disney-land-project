@@ -7,7 +7,7 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
 from process import load_csv
-from tui import menu_choice, view_data, visualize_data, reviews_park
+from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location
 
 def main():
     """
@@ -47,12 +47,15 @@ def main():
                     reviews_park(data)
                 elif sub_choice_a == 'B':
                     print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
+                    # Pass the loaded dataset
+                    rev_park_location(data)
                 elif sub_choice_a == 'C':
                     print("You have chosen option C - Average Score per year by Park")
                 elif sub_choice_a == 'D':
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
                 else:
                     print("Invalid choice. Please try again.")
+            break
 
         elif choice == 'B':
             print("\nYou have chosen option B - Visualize Data")
