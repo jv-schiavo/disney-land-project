@@ -45,17 +45,19 @@ def main():
                     print("\nYou have chosen option A - View Reviews by Park")
                     # Pass the loaded dataset
                     reviews_park(data)
+
                 elif sub_choice_a == 'B':
                     print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
                     # Pass the loaded dataset
                     rev_park_location(data)
+
                 elif sub_choice_a == 'C':
                     print("You have chosen option C - Average Score per year by Park")
                 elif sub_choice_a == 'D':
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
                 else:
-                    print("Invalid choice. Please try again.")
-            break
+                    print("Invalid choice. Please try again.\n")
+                    menu_choice()
 
         elif choice == 'B':
             print("\nYou have chosen option B - Visualize Data")
@@ -74,7 +76,8 @@ def main():
                 elif sub_choice_b == 'D':
                     print("You have chosen option D - Most Popular Month by Park")
                 else:
-                    print("Invalid choice. Please try again.")
+                    print("Invalid choice. Please try again.\n")
+                    menu_choice()
         else:
             print("Invalid choice. Please try again.")
 if __name__ == "__main__":
