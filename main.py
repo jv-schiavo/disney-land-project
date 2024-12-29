@@ -57,7 +57,7 @@ def main():
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
                 else:
                     print("Invalid choice. Please try again.\n")
-                    menu_choice()
+                    view_data()
 
         elif choice == 'B':
             print("\nYou have chosen option B - Visualize Data")
@@ -77,8 +77,10 @@ def main():
                     print("You have chosen option D - Most Popular Month by Park")
                 else:
                     print("Invalid choice. Please try again.\n")
-                    menu_choice()
+                    visualize_data()
         else:
             print("Invalid choice. Please try again.")
+
+
 if __name__ == "__main__":
     main()
