@@ -5,8 +5,6 @@ It handles all user interactions, including displaying menus and getting user in
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2014
 """
-from fontTools.feaLib.variableScalar import Location
-
 
 def menu_choice():
     # Display the main menu and accepts user input
@@ -49,3 +47,23 @@ def reviews_park(data):
     for review in filtered_reviews:
         print(f"Reviews ID: {review['Review_ID']}, Rating: {review['Rating']},"
               f"Date: {review['Year_Month']}, Location: {review['Reviewer_Location']}")
+
+def rev_park_location(data):
+    # Display the number of reviews a specific park has received from a given location
+    park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_California, Disneyland_Paris)\n")
+    # Filter reviews for the specified park
+    filtered_reviews = [row for row in data if row['Branch'] == park_name]
+
+    if not filtered_reviews:
+        print(f"No reviews found for {park_name}")
+        return
+    # Filter reviews for the specified reviewer location
+    reviewer_location = input("\nPlease enter the reviewer location you wish to see reviews for: \n")
+
+    filtered_location = [row for row in data if row['Reviewer_Location'] == reviewer_location]
+
+    if not filtered_location:
+        print(f"No reviews found for {park_name}")
+        return
+    # Display the number of reviews
+    print(f"\nNumber of reviews for {park_name} from {reviewer_location}: {len(filtered_location)}")
