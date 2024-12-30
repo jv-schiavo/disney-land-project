@@ -35,7 +35,7 @@ def plot_reviews_pie_chart(data):
 
 def plot_avg_scores_bar_chart(data):
     """
-    Displays a single bar chart showing the average number of reviews each park has received.
+    Display a single bar chart showing the average number of reviews each park has received.
     """
 
     # Aggregate data by park
@@ -67,5 +67,50 @@ def plot_avg_scores_bar_chart(data):
     plt.xlabel("Park Name")
     plt.ylabel("Average Rating")
     plt.title("Average Review Scores by Park")
+    plt.show()
+
+def plot_top_10_location(data):
+    """
+    Display a bar chart that shows the top 10 locations that gave the highest average rating for that park
+    """
+
+    park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_"
+                      "California, Disneyland_Paris)\n")
+
+    park_data = [row for row in data if row['Branch'] == park_name]
+    if not park_data:
+        print(f"\n{park_name} is not in the data")
+        return
+
+    # Aggregate data by location
+    location_scores = {}
+    location_counts = {}
+
+    for row in park_data:
+        location = row['Reviewer_Location']
+        rating = int(row['Rating'])
+
+        if location in location_scores:
+            location_scores[location] += rating
+            location_counts[location] += 1
+        else:
+            location_scores[location] = rating
+            location_counts[location] = 1
+
+    # Calculate average scores by location
+    average_scores = {location: location_scores[location] / location_counts[location]}
+
+    # Sort locations by average rating and select top 10
+    sorted_locations = sorted(location_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    # Prepare data for the bar chart
+    labels = [location for location, _ in sorted_locations]
+    heights = [score for _, score in sorted_locations]
+
+    # Create the bar chart
+    plt.bar(labels, heights, color='green')
+    plt.xlabel("Location")
+    plt.ylabel("Average Rating")
+    plt.title(f"Top 10 Locations by Average Rating for {park_name}")
     plt.show()
 
