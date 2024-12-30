@@ -8,7 +8,7 @@ Date: 27/12/2024
 """
 from process import load_csv
 from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating
-from visual import plot_reviews_pie_chart, plot_avg_scores_bar_chart
+from visual import plot_reviews_pie_chart, plot_avg_scores_bar_chart, plot_top_10_location
 
 
 def main():
@@ -91,6 +91,8 @@ def main():
 
                 elif sub_choice_b == 'C':
                     print("You have chosen option C - Park Ranking by Nationality")
+                    # Pass the plot
+                    plot_top_10_location(data)
 
                 elif sub_choice_b == 'D':
                     print("You have chosen option D - Most Popular Month by Park")
