@@ -86,6 +86,8 @@ def main():
 
                 elif sub_choice_b == 'B':
                     print("\nYou have chosen option B - Average Scores")
+                    # Pass the plot
+                    plot_avg_scores_bar_chart(data)
 
                 elif sub_choice_b == 'C':
                     print("You have chosen option C - Park Ranking by Nationality")
