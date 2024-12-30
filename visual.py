@@ -69,7 +69,7 @@ def plot_avg_scores_bar_chart(data):
     plt.title("Average Review Scores by Park")
     plt.show()
 
-def plot_top_10_location(data, min_reviews=250):
+def plot_top_10_location(data, min_reviews=100):
     """
     Display a bar chart that shows the top 10 locations that gave the highest average rating for that park
     """
