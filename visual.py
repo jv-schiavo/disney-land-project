@@ -5,7 +5,7 @@ Any visualisations should be generated via functions in this module.
 
 import matplotlib
 import matplotlib.pyplot as plt
-
+from process import load_csv
 
 matplotlib.use('TkAgg')
 # Set the backend to 'TkAgg' to force plots to open in a new window
@@ -69,7 +69,7 @@ def plot_avg_scores_bar_chart(data):
     plt.title("Average Review Scores by Park")
     plt.show()
 
-def plot_top_10_location(data):
+def plot_top_10_location(data, min_reviews=250):
     """
     Display a bar chart that shows the top 10 locations that gave the highest average rating for that park
     """
@@ -78,6 +78,7 @@ def plot_top_10_location(data):
                       "California, Disneyland_Paris)\n")
 
     park_data = [row for row in data if row['Branch'] == park_name]
+
     if not park_data:
         print(f"\n{park_name} is not in the data")
         return
@@ -87,7 +88,7 @@ def plot_top_10_location(data):
     location_counts = {}
 
     for row in park_data:
-        location = row['Reviewer_Location']
+        location = row.get('Reviewer_Location')
         rating = int(row['Rating'])
 
         if location in location_scores:
@@ -98,17 +99,33 @@ def plot_top_10_location(data):
             location_counts[location] = 1
 
     # Calculate average scores by location
-    average_scores = {location: location_scores[location] / location_counts[location]}
+    average_scores = {}
+
+    for location, total_score in location_scores.items():
+        count = location_counts[location]
+        average = total_score / count
+        average_scores[location] = average
+
+
+    # Filter out locations with fewer reviews than the threshold
+    filtered_locations = {location: location_scores[location] / location_counts[location]
+                          for location in location_scores if location_counts[location] >= min_reviews}
+
+    if not filtered_locations:
+        print(f"No locations meet the minimum review threshold of {min_reviews}.")
+        return
 
     # Sort locations by average rating and select top 10
-    sorted_locations = sorted(location_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+    sorted_locations = sorted(filtered_locations.items(), key=lambda x: x[1], reverse=True)[:10]
+    top_10_locations = sorted_locations[:10]
 
     # Prepare data for the bar chart
     location_mapping = {"United Kingdom": "UK",
-                        "United States": "USA"}
+                        "United States": "USA",
+                        "United Arab Emirates": "UAE"}
 
-    labels = [location_mapping.get(location, location) for location, _ in sorted_locations]
-    heights = [score for _, score in sorted_locations]
+    labels = [location_mapping.get(location, location) for location, _ in top_10_locations]
+    heights = [score for _, score in top_10_locations]
 
     # Create the bar chart
     plt.bar(labels, heights, color='green')
@@ -116,4 +133,3 @@ def plot_top_10_location(data):
     plt.ylabel("Average Rating")
     plt.title(f"Top 10 Locations by Average Rating for {park_name}")
     plt.show()
-
