@@ -33,4 +33,39 @@ def plot_reviews_pie_chart(data):
     plt.title("Number of Reviews by Park")
     plt.show()
 
+def plot_avg_scores_bar_chart(data):
+    """
+    Displays a single bar chart showing the average number of reviews each park has received.
+    """
+
+    # Aggregate data by park
+    park_counts = {}
+    park_scores= {}
+
+    for row in data:
+        park_name = row['Branch']
+        rating = int(row['Rating'])
+
+        if park_name in park_scores:
+            park_scores[park_name] += rating # Sum the scores for the park
+            park_counts[park_name] += 1 # Count the reviews for the park
+        else:
+            park_scores[park_name] = rating
+            park_counts[park_name] = 1
+
+    # Calculate the average scores
+    average_scores = {park: park_scores[park] / park_counts[park]
+                      for park in park_scores}
+
+    # Prepare data for bar chart
+    labels = list(average_scores.keys())
+    heights = list(average_scores.values())
+
+    # Create the bar chart
+    plt.figure(figsize=(10,6))
+    plt.bar(labels, heights, color=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
+    plt.xlabel("Park Name")
+    plt.ylabel("Average Rating")
+    plt.title("Average Review Scores by Park")
+    plt.show()
 
