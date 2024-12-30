@@ -3,8 +3,12 @@ This module is responsible for visualising the data using Matplotlib.
 Any visualisations should be generated via functions in this module.
 """
 
+import matplotlib
 import matplotlib.pyplot as plt
 
+
+matplotlib.use('TkAgg')
+# Set the backend to 'TkAgg' to force plots to open in a new window
 
 def plot_reviews_pie_chart(data):
     """
