@@ -104,7 +104,10 @@ def plot_top_10_location(data):
     sorted_locations = sorted(location_counts.items(), key=lambda x: x[1], reverse=True)[:10]
 
     # Prepare data for the bar chart
-    labels = [location for location, _ in sorted_locations]
+    location_mapping = {"United Kingdom": "UK",
+                        "United States": "USA"}
+
+    labels = [location_mapping.get(location, location) for location, _ in sorted_locations]
     heights = [score for _, score in sorted_locations]
 
     # Create the bar chart
