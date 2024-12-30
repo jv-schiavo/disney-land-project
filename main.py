@@ -8,6 +8,7 @@ Date: 27/12/2024
 """
 from process import load_csv
 from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating
+from visual import plot_reviews_pie_chart, plot_avg_scores_bar_chart
 
 
 def main():
@@ -28,8 +29,10 @@ def main():
 
 
     while True:
+
         # Display the main menu and get user input
         choice = menu_choice() # Call function from tui.py to display the menu
+
         if choice == 'X':
             print("\nYou have chosen option X - Exit")
             print("Exiting program. Goodbye!")
@@ -37,11 +40,13 @@ def main():
 
         elif choice == 'A':
             print("\nYou have chosen option A - View Data")
+
             while True:
                 # Display the sub-menu after option A
                 sub_choice_a = view_data()
                 if sub_choice_a == 'X':
                     break
+
                 elif sub_choice_a == 'A':
                     print("\nYou have chosen option A - View Reviews by Park")
                     # Pass the loaded dataset
@@ -56,28 +61,38 @@ def main():
                     print("You have chosen option C - Average Score per year by Park")
                     # Pass the loaded dataset
                     avg_rating(data)
+
                 elif sub_choice_a == 'D':
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
+
                 else:
                     print("Invalid choice. Please try again.\n")
                     view_data()
 
         elif choice == 'B':
             print("\nYou have chosen option B - Visualize Data")
+
             while True:
                 # Display the sub-menu after option B
                 sub_choice_b = visualize_data()
                 if sub_choice_b == 'X':
                     print("Returning to Main Menu...\n")
                     break
+
                 elif sub_choice_b == 'A':
                     print("\nYou have chosen option A - Most Reviewed by Parks")
+                    # Pass the plot
+                    plot_reviews_pie_chart(data)
+
                 elif sub_choice_b == 'B':
                     print("\nYou have chosen option B - Average Scores")
+
                 elif sub_choice_b == 'C':
                     print("You have chosen option C - Park Ranking by Nationality")
+
                 elif sub_choice_b == 'D':
                     print("You have chosen option D - Most Popular Month by Park")
+
                 else:
                     print("Invalid choice. Please try again.\n")
                     visualize_data()
