@@ -7,7 +7,8 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
 from process import load_csv
-from tui import menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating
+from tui import (menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating,
+                 avg_score_park_location)
 from visual import plot_reviews_pie_chart, plot_avg_scores_bar_chart, plot_top_10_location, plot_bar_chart_month
 
 
@@ -64,6 +65,8 @@ def main():
 
                 elif sub_choice_a == 'D':
                     print("You have chosen option D - Average Score by Park and Reviewer Location")
+                    # Pass the loaded dataset
+                    avg_score_park_location(data)
 
                 else:
                     print("Invalid choice. Please try again.\n")
