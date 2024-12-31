@@ -3,6 +3,7 @@ This module is responsible for visualising the data using Matplotlib.
 Any visualisations should be generated via functions in this module.
 """
 
+
 import matplotlib
 import matplotlib.pyplot as plt
 from process import load_csv
@@ -133,3 +134,72 @@ def plot_top_10_location(data, min_reviews=100):
     plt.ylabel("Average Rating")
     plt.title(f"Top 10 Locations by Average Rating for {park_name}")
     plt.show()
+
+def plot_bar_chart_month(data):
+    """
+        Display a bar chart that shows the average rating that park received for each month of the year.
+        """
+
+    park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_"
+                      "California, Disneyland_Paris)\n")
+
+    # Filter data for the specified park
+    park_data = [row for row in data if row['Branch'] == park_name]
+    if not park_data:
+        print(f"\n{park_name} is not in the data.")
+        return
+
+    # Aggregate data by month
+    month_scores = {str(i): 0 for i in range (1, 13)}
+    month_counts = {str(i): 0 for i in range (1, 13)}
+
+    for row in park_data:
+        try:
+            # Extract the month from Year_Month and normalize to single digit
+            year_month = row.get('Year_Month')
+            if not year_month or '-' not in year_month:
+                continue
+
+            month = year_month.split('-')[1].lstrip('0')
+
+            rating = int(row['Rating'])
+            month_scores[month] += rating
+            month_counts[month] += 1
+
+        except (ValueError, IndexError) as e:
+            print(f"Error processing row {row}: {e}")
+            continue
+
+    # Calculate average scores for each month
+    average_scores = {
+        month: (month_scores[month] / month_counts[month]) if month_counts[month] > 0 else 0
+        for month in month_scores
+    }
+
+    # Define month order and sort
+    month_order = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    sorted_average_scores = [
+        (month, average_scores[month])
+        for month in month_order if month in average_scores
+    ]
+
+    # Check for empty data after filtering
+    if not sorted_average_scores:
+        print(f"No ratings data available for {park_name}.")
+        return
+
+    # Unpack sorted scores into labels and heights
+    labels, heights = zip(*sorted_average_scores)
+    month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    labels = [month_names[int(month) - 1] for month in labels]
+
+    plt.bar(labels, heights, color='lightpink')
+    plt.title(f"Average Ratings for {park_name} by Month")
+    plt.xlabel("Month")
+    plt.ylabel("Average Rating")
+    plt.show()
+
+file_path = r'C:\Users\Joao Victor\Downloads\project_template\data\disneyland_reviews.csv'
+data = load_csv(file_path)
+plot_bar_chart_month(data)
