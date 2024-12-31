@@ -200,6 +200,3 @@ def plot_bar_chart_month(data):
     plt.ylabel("Average Rating")
     plt.show()
 
-file_path = r'C:\Users\Joao Victor\Downloads\project_template\data\disneyland_reviews.csv'
-data = load_csv(file_path)
-plot_bar_chart_month(data)
