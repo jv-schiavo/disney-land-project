@@ -71,7 +71,7 @@ def export_menu(data):
     print("[C] Export as JSON")
     print("[X] Main Menu")
 
-    sub_choice_c = input("Enter your choice: ")
+    sub_choice_c = input("Enter your choice: ").strip().upper()
 
     if sub_choice_c == "A":
         print("\nYou have chosen option A - Export as TXT")
