@@ -6,6 +6,7 @@ and calling relevant functions from other modules based on user input.
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
+from exporter import export_menu
 from process import load_csv
 from tui import (menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating,
                  avg_score_park_location)
@@ -105,6 +106,10 @@ def main():
                 else:
                     print("Invalid choice. Please try again.\n")
                     visualize_data()
+
+        elif choice == 'C':
+            print("\nYou have chosen option C - Export Data")
+            export_menu(data)
         else:
             print("Invalid choice. Please try again.")
 
