@@ -14,6 +14,7 @@ def menu_choice():
     print("\nPlease enter the letter which corresponds with your desired menu choice:")
     print("\n[A] View Data")
     print("[B] Visualize Data")
+    print("[C] Export Data")
     print("[X] Exit")
     return input().strip().upper() #str: the user's menu choice
 
