@@ -66,20 +66,23 @@ class ParkDataAggregator:
 # Submenu to choose the export format
 def export_menu(data):
     print("\nExport Menu:")
-    print("1. Export as TXT")
-    print("2. Export as CSV")
-    print("3. Export as JSON")
-    print("4. Go Back to Main Menu")
+    print("[A] Export as TXT")
+    print("[B] Export as CSV")
+    print("[C] Export as JSON")
+    print("[X] Main Menu")
 
-    sub_choice_c = input("Enter the number of your choice: ")
+    sub_choice_c = input("Enter your choice: ")
 
-    if sub_choice_c == "1":
+    if sub_choice_c == "A":
+        print("\nYou have chosen option A - Export as TXT")
         format = "TXT"
-    elif sub_choice_c == "2":
+    elif sub_choice_c == "B":
+        print("\nYou have chosen option B - Export as CSV")
         format = "CSV"
-    elif sub_choice_c == "3":
+    elif sub_choice_c == "C":
+        print("\nYou have chosen option C - Export as JSON")
         format = "JSON"
-    elif sub_choice_c == "4":
+    elif sub_choice_c == "X":
         return  # Go back to the main menu
     else:
         print("Invalid choice! Returning to main menu.")
