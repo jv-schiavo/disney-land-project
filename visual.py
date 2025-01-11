@@ -1,12 +1,17 @@
 """
 This module is responsible for visualising the data using Matplotlib.
 Any visualisations should be generated via functions in this module.
+
+Author: Joao Victor Garcia Schiavo
+Date: 31/12/2024
 """
 
 
 import matplotlib
 import matplotlib.pyplot as plt
-from process import load_csv
+
+
+
 
 matplotlib.use('TkAgg')
 # Set the backend to 'TkAgg' to force plots to open in a new window
@@ -64,10 +69,15 @@ def plot_avg_scores_bar_chart(data):
 
     # Create the bar chart
     plt.figure(figsize=(10,6))
-    plt.bar(labels, heights, color=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
+    bars = plt.bar(labels, heights, color=['#ff9999', '#66b3ff', '#99ff99', '#ffcc99'])
     plt.xlabel("Park Name")
     plt.ylabel("Average Rating")
     plt.title("Average Review Scores by Park")
+
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.05, round(yval, 2),
+                 ha='center', va='bottom', fontsize=10)
     plt.show()
 
 def plot_top_10_location(data, min_reviews=100):
@@ -129,10 +139,14 @@ def plot_top_10_location(data, min_reviews=100):
     heights = [score for _, score in top_10_locations]
 
     # Create the bar chart
-    plt.bar(labels, heights, color='green')
+    bars = plt.bar(labels, heights, color='green')
     plt.xlabel("Location")
     plt.ylabel("Average Rating")
     plt.title(f"Top 10 Locations by Average Rating for {park_name}")
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.02, round(yval, 2),
+                 ha='center', va='bottom', fontsize=10)
     plt.show()
 
 def plot_bar_chart_month(data):
@@ -194,9 +208,14 @@ def plot_bar_chart_month(data):
                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     labels = [month_names[int(month) - 1] for month in labels]
 
-    plt.bar(labels, heights, color='lightpink')
+    bars = plt.bar(labels, heights, color='lightpink')
     plt.title(f"Average Ratings for {park_name} by Month")
     plt.xlabel("Month")
     plt.ylabel("Average Rating")
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.02, round(yval, 2),
+                 ha='center', va='bottom', fontsize=10)
     plt.show()
+
 
