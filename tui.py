@@ -6,17 +6,41 @@ Author: Joao Victor Garcia Schiavo
 Date: 27/12/2014
 """
 
+def title():
+    # Program title
+    title = "Disneyland Park Review"
+    print("-" * len(title))
+    print(title)
+    print("-" * len(title))
+
 def menu_choice():
     """"
     Display the main menu and accepts user input
     """
-
     print("\nPlease enter the letter which corresponds with your desired menu choice:")
     print("\n[A] View Data")
     print("[B] Visualize Data")
     print("[C] Export Data")
     print("[X] Exit")
-    return input().strip().upper() #str: the user's menu choice
+    return input().strip().upper()
+
+
+    while True:
+
+        choice = menu_choice()
+
+        if choice == "A":
+            print("\nYou have chosen option A - View Data")
+        elif choice == "B":
+            print("\nYou have chosen option B - Visualize Data")
+        elif choice == "C":
+            print("\nYou have chosen option C - Export Data")
+        elif choice == "X":
+            print("\nYou have chosen option X - Exit")
+            print("Exiting program. Goodbye!")
+            break  # Exit the program
+        else:
+            print("Please enter a valid option")
 
 
 def view_data():
@@ -29,7 +53,24 @@ def view_data():
     print("[B] Number of Reviews by Park and Reviewer Location")
     print("[C] Average Score per year by Park")
     print("[D] Average Score per Park by Reviewer Location")
+    print("[X] Main Menu")
     return input().strip().upper() #str: the user's sub-menu choice
+
+    while True:
+        sub_choice_a = view_data()
+        if sub_choice_a == "A":
+            print("\nYou have chosen option A - View Reviews by Park")
+        elif sub_choice_a == "B":
+            print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
+        elif sub_choice_a == "C":
+            print("\nYou have chosen option C - Average Score per year by Park")
+        elif sub_choice_a == "D":
+            print("\nYou have chosen option D - Average Score per Park by Reviewer Location")
+        elif sub_choice_a == "X":
+            print("Returning to Main Menu...\n")
+        else:
+            print("\nPlease enter a valid option")
+
 
 def visualize_data():
     """
@@ -41,13 +82,29 @@ def visualize_data():
     print("[B] Average Scores")
     print("[C] Park Ranking by Nationality")
     print("[D] Most Popular Month by Park")
+    print("[X] Main Menu")
     return input().strip().upper() #str: the user's sub-menu choice
+
+    while True:
+        sub_choice_b = visualize_data()
+        if sub_choice_b == "A":
+            print("\nYou have chosen option A - Most Reviewed Parks")
+        elif sub_choice_b == "B":
+            print("\nYou have chosen option B - Average Scores")
+        elif sub_choice_b == "C":
+            print("\nYou have chosen option C - Park Ranking by Nationality")
+        elif sub_choice_b == "D":
+            print("\nYou have chosen option D - Most Popular Month by Park")
+        elif sub_choice_b == "X":
+            print("Returning to Main Menu...\n")
+        else:
+            print("\nPlease enter a valid option")
 
 def reviews_park(data):
     """
     Display all reviews for a specific park based on user input
     """
-
+    print("\nYou have chosen option A - View Reviews by Park")
     park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_"
                       "California, Disneyland_Paris)\n")
 
@@ -66,7 +123,7 @@ def rev_park_location(data):
     """
     Display the number of reviews a specific park has received from a given location
     """
-
+    print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
     park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_"
                       "California, Disneyland_Paris)\n")
 
@@ -91,7 +148,7 @@ def avg_rating(data):
     """
     Display the average rating for the given park in the given year
     """
-
+    print("You have chosen option C - Average Score per year by Park")
     park_name = input("\nPlease enter the name park you wish to see reviews for: (Eg: Disneyland_HongKong, Disneyland_"
                       "California, Disneyland_Paris)\n")
 
@@ -125,6 +182,7 @@ def avg_score_park_location(data):
     """
     Display the average score per park by reviewer location
     """
+    print("You have chosen option D - Average Score by Park and Reviewer Location")
     # Extract unique parks
     unique_parks = set(row['Branch'] for row in data)
 
