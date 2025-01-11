@@ -6,9 +6,9 @@ and calling relevant functions from other modules based on user input.
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
-from exporter import export_menu
 from process import load_csv
-from tui import (menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating,
+from exporter import export_menu
+from tui import (title,menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating,
                  avg_score_park_location)
 from visual import plot_reviews_pie_chart, plot_avg_scores_bar_chart, plot_top_10_location, plot_bar_chart_month
 
@@ -20,15 +20,10 @@ def main():
         Displays the main menu, handles user input, and directs the program
         flow to sub-menus or exits the program.
         """
-    # Program title
-    title = "Disneyland Park Review"
-    print("-" * len(title))
-    print(title)
-    print("-" * len(title))
+    title()
 
     file_path = r'C:\Users\Joao Victor\Downloads\project_template\disneyland_reviews.csv'
     data = load_csv(file_path)
-
 
     while True:
 
