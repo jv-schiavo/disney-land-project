@@ -31,12 +31,9 @@ def main():
         choice = menu_choice() # Call function from tui.py to display the menu
 
         if choice == 'X':
-            print("\nYou have chosen option X - Exit")
-            print("Exiting program. Goodbye!")
             break # Exit the program
 
         elif choice == 'A':
-            print("\nYou have chosen option A - View Data")
 
             while True:
                 # Display the sub-menu after option A
@@ -45,68 +42,54 @@ def main():
                     break
 
                 elif sub_choice_a == 'A':
-                    print("\nYou have chosen option A - View Reviews by Park")
                     # Pass the loaded dataset
                     reviews_park(data)
 
                 elif sub_choice_a == 'B':
-                    print("\nYou have chosen option B - Number of Reviews by Park and Reviewer Location")
                     # Pass the loaded dataset
                     rev_park_location(data)
 
                 elif sub_choice_a == 'C':
-                    print("You have chosen option C - Average Score per year by Park")
                     # Pass the loaded dataset
                     avg_rating(data)
 
                 elif sub_choice_a == 'D':
-                    print("You have chosen option D - Average Score by Park and Reviewer Location")
                     # Pass the loaded dataset
                     avg_score_park_location(data)
 
                 else:
-                    print("Invalid choice. Please try again.\n")
                     view_data()
 
         elif choice == 'B':
-            print("\nYou have chosen option B - Visualize Data")
-
             while True:
                 # Display the sub-menu after option B
                 sub_choice_b = visualize_data()
                 if sub_choice_b == 'X':
-                    print("Returning to Main Menu...\n")
                     break
 
                 elif sub_choice_b == 'A':
-                    print("\nYou have chosen option A - Most Reviewed by Parks")
                     # Pass the plot
                     plot_reviews_pie_chart(data)
 
                 elif sub_choice_b == 'B':
-                    print("\nYou have chosen option B - Average Scores")
                     # Pass the plot
                     plot_avg_scores_bar_chart(data)
 
                 elif sub_choice_b == 'C':
-                    print("You have chosen option C - Park Ranking by Nationality")
                     # Pass the plot
                     plot_top_10_location(data,min_reviews=100)
 
                 elif sub_choice_b == 'D':
-                    print("You have chosen option D - Most Popular Month by Park")
                     # Pass the plot
                     plot_bar_chart_month(data)
 
                 else:
-                    print("Invalid choice. Please try again.\n")
                     visualize_data()
 
         elif choice == 'C':
-            print("\nYou have chosen option C - Export Data")
             export_menu(data)
         else:
-            print("Invalid choice. Please try again.")
+            menu_choice()
 
 
 if __name__ == "__main__":
