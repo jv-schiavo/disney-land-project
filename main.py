@@ -6,7 +6,7 @@ and calling relevant functions from other modules based on user input.
 Author: Joao Victor Garcia Schiavo
 Date: 27/12/2024
 """
-from process import load_csv
+from process import load_csv, file_path
 from exporter import export_menu
 from tui import (title,menu_choice, view_data, visualize_data, reviews_park, rev_park_location, avg_rating,
                  avg_score_park_location)
@@ -22,7 +22,6 @@ def main():
         """
     title()
 
-    file_path = r'C:\Users\Joao Victor\Downloads\project_template\disneyland_reviews.csv'
     data = load_csv(file_path)
 
     while True:
